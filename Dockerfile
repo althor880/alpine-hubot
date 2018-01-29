@@ -1,6 +1,6 @@
 FROM alpine
 
-MAINTAINER Ben Visser <benny@noqcks.io>
+MAINTAINER Ryan Gifford <rgifford@gmail.com>
 
 # Install dependencies
 RUN apk update && apk upgrade \
@@ -22,13 +22,14 @@ USER  hubot
 WORKDIR /hubot
 
 # Install hubot
-RUN yo hubot --owner="Ben Visser <benny@noqcks.io>" --name="dockbot" --description="Roll, roll, rollercoaster" --defaults
+RUN yo hubot --owner="Ryan Gifford <rgifford@gmail.com>" --name="jules" --description="Lemons, all the time" --defaults
 COPY package.json package.json
 RUN npm install
 ADD hubot/hubot-scripts.json /hubot/
 ADD hubot/external-scripts.json /hubot/
+ADD hubot/scripts /hubot/scripts
 
 EXPOSE 80
 
 # And go
-ENTRYPOINT ["/bin/sh", "-c", "bin/hubot --adapter slack"]
+ENTRYPOINT ["/bin/sh", "-c", "bin/hubot --adapter hipchat"]
