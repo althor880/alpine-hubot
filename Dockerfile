@@ -11,7 +11,7 @@ RUN apk update && apk upgrade \
   && curl -sS https://bootstrap.pypa.io/get-pip.py | python \
   && pip install awscli \
   && npm install -g npm \
-  && npm install -g coffee-script \
+  && npm install -g coffeescript \
   && npm install -g yo generator-hubot \
   && apk --purge -v del py-pip \
   && rm -rf /var/cache/apk/*
@@ -22,10 +22,9 @@ USER  hubot
 WORKDIR /hubot
 
 # Install hubot
-RUN yo hubot --owner="Ryan Gifford <rgifford@gmail.com>" --name="jules" --description="Lemons, all the time" --defaults
+RUN yo hubot --owner="Ryan Gifford <rgifford@gmail.com>" --name="Stanley" --description="Lemons, all the time" --defaults
 COPY package.json package.json
 RUN npm install
-ADD hubot/hubot-scripts.json /hubot/
 ADD hubot/external-scripts.json /hubot/
 ADD hubot/scripts /hubot/scripts
 
